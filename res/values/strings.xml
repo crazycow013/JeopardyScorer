@@ -1,9 +1,10 @@
 <resources>
 
-    <string name="app_name">Scorer</string>
+    <string name="app_name">JeopardyScorer</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Jeopardy Scorer</string>
+    <string name="instructions">Instructions</string>
     
     <string name="r1b1">$200</string>
     <string name="r1b2">$200</string>
@@ -54,7 +55,14 @@
     <string name="correct">+</string>
     <string name="incorrect">-</string>
     
-   	
+    <string name="pref_orientation">Orientation</string>
+    <string name="pref_orientation_default">Horizontal</string>
+    
+   	<string name="dialog_instructions">Welcome to Jeopardy Scorer! As each question is asked, click the corresponding tile to cycle through the modes 
+   	    (think Minesweeper.) Tap once to mark the question as correct, once more to mark it as incorrect, once more to mark it as unanswered, and one final 
+   	    time to restore it to the original state. For daily doubles, mark the tile it was on as unanswered, then type your wager into the Daily Double box.
+   	    If your answer was correct, press the green + button and if it was incorrect, press the red - button. Press the Double Jeopardy button to move on to 
+   	    Double Jeopardy. After that is complete, move to Final Jeopardy.</string>
     
 
 </resources>

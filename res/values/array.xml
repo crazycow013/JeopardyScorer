@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_orientation_entries">
+        <item>Horizontal</item>
+        <item>Vertical</item>
+    </array>
+    <array name="pref_orientation_values">
+        <item>0</item>
+        <item>1</item>
+    </array>
+</resources>

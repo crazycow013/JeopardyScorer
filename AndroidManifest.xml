@@ -4,7 +4,7 @@
     android:versionName="1.02" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="15" />
 
     <application
@@ -15,7 +15,8 @@
             android:name="com.davidalin.jeopardyscorer.JeopardyScorer"
             android:label="@string/title_activity_main"
             android:screenOrientation="landscape" 
-            android:configChanges="orientation|keyboardHidden">
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +28,10 @@
             android:label="@string/title_activity_main"
             android:screenOrientation="landscape" 
             android:configChanges="orientation|keyboardHidden">
+        </activity>
+        <activity
+            android:name="com.davidalin.jeopardyscorer.SettingsActivity"
+            android:label="Settings Activity">
         </activity>
     </application>
 

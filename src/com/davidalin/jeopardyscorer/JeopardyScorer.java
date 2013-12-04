@@ -1,9 +1,12 @@
 package com.davidalin.jeopardyscorer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -99,6 +102,16 @@ public class JeopardyScorer extends Activity {
         Button b = (Button) findViewById(test);
         b.setText("Final Jeopardy");
       }
+      
+      boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
+      if (firstrun){
+        new AlertDialog.Builder(this).setTitle("Instructions").setMessage(R.string.dialog_instructions).setNeutralButton("OK", null).show();
+        // Save the state
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+            .edit()
+            .putBoolean("firstrun", false)
+            .commit();
+      }
   }
 
     // creates options menu
@@ -107,6 +120,26 @@ public class JeopardyScorer extends Activity {
       getMenuInflater().inflate(R.menu.activity_main, menu);
       return true;
     }
+    
+    //called when an option is clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+      System.out.println("right?");
+      switch(item.getItemId()){//decide which MenuItem was pressed based on its id
+        case R.id.menu_settings:
+          System.out.println("we got here");
+          startActivity(new Intent(this, SettingsActivity.class));//start the PrefsActivity.java
+          break;
+        case R.id.instructions:
+          new AlertDialog.Builder(this).setTitle("Instructions").setMessage(R.string.dialog_instructions).setNeutralButton("OK", null).show();
+          //DialogFragment newFragment = new InstructionsDialogFragment();
+          //newFragment.show(getFragmentManager(), "instructions");
+      }
+      
+      return true; //to execute the event here
+    }
+
+
     
     // prepare to exit application, save our values and button states
     @Override
