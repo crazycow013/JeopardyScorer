@@ -1,0 +1,189 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/newgame"
+        android:onClick="newGame"
+        android:background="@drawable/b_button"
+        android:textColor="@color/gold"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+    
+    <TextView
+        android:id="@+id/gamestats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/correct"
+        android:layout_alignParentLeft="true"
+        android:textSize="28dp"
+        android:text="@string/gamestats" />
+    
+    <TextView
+        android:id="@+id/numcorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/correct"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="@string/score" />
+    
+    <TextView
+        android:id="@+id/correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:textSize="20dp"
+        android:text="@string/finalcorrect" />
+    
+    <TextView
+        android:id="@+id/numwrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/wrong"
+        android:layout_below="@+id/numcorrect"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="@string/score" />
+    
+    <TextView
+        android:id="@+id/wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/correct"
+        android:textSize="20dp"
+        android:text="@string/finalwrong" />
+    
+    <TextView 
+        android:id="@+id/highscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/wrong"
+        android:textSize="20dp"
+        android:text="@string/highscore"
+        />
+    
+    <TextView
+        android:id="@+id/numhighscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/highscore"
+        android:layout_below="@+id/numwrong"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="@string/score" />
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/finalj"
+        android:textSize="36dp" />
+    <LinearLayout
+        android:id="@+id/centered"
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/textView1"
+    	android:layout_centerHorizontal="true" >
+        
+	    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/curscore"
+	        android:textSize="24dp" />
+	    
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/score"
+	        android:layout_marginLeft="15dp"
+	        android:textSize="24dp" />
+	    
+	</LinearLayout>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/centered"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:hint="@string/finalwager"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+    
+    <LinearLayout
+        android:id="@+id/centered1"
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/editText1"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="10dp" >
+        
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/toggleon"
+            android:onClick="finalRight"
+            android:background="@drawable/b_button"
+            android:textColor="@color/gold"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp" />
+        
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/toggleoff"
+            android:onClick="finalWrong"
+            android:background="@drawable/b_button"
+            android:textColor="@color/gold"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+        
+   	</LinearLayout>
+   	
+    <LinearLayout
+        android:id="@+id/centered2"
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentBottom="true"
+    	android:layout_centerHorizontal="true" >
+        
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finalscore" 
+            android:textSize="20pt" />
+        
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score"
+            android:layout_marginLeft="15dp"
+            android:textSize="20pt"
+            android:visibility="invisible" />
+        
+   	</LinearLayout>
+    
+</RelativeLayout>
