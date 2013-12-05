@@ -48,8 +48,7 @@ public final class R {
         public static final int editText1=0x7f0b0024;
         public static final int gamestats=0x7f0b002a;
         public static final int highscore=0x7f0b002f;
-        public static final int instructions=0x7f0b003b;
-        public static final int menu_settings=0x7f0b003a;
+        public static final int instructions=0x7f0b003a;
         public static final int newGame=0x7f0b0029;
         public static final int numcorrect=0x7f0b002c;
         public static final int numhighscore=0x7f0b0030;

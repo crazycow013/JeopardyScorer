@@ -22,7 +22,6 @@ public class FinalJeopardyActivity extends Activity {
     // get our data bundle
     Bundle extras = intent.getExtras();
     score = extras.getInt("myScore");
-    //highscore = extras.getInt("myHighScore");
     Integer correct = extras.getInt("mycorrect");
     Integer wrong = extras.getInt("mywrong");
     
@@ -81,17 +80,11 @@ public class FinalJeopardyActivity extends Activity {
     
   public void newGame(View view) {
     finish();
-    // old code? don't think I need reset anymore TODO
-    /*
-    Bundle dataBundle = new Bundle();
-    dataBundle.putInt("myHighScore", highscore);
-    */
     SharedPreferences prefs = this.getSharedPreferences("myHighScore", Context.MODE_PRIVATE);
     Editor editor = prefs.edit();
     editor.putInt("myHighScore", highscore);
     editor.commit();
     Intent intent = new Intent(this, JeopardyScorer.class);
-    //intent.putExtras(dataBundle);
     startActivity(intent);
   }    
 }

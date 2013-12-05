@@ -29,10 +29,6 @@
             android:screenOrientation="landscape" 
             android:configChanges="orientation|keyboardHidden">
         </activity>
-        <activity
-            android:name="com.davidalin.jeopardyscorer.SettingsActivity"
-            android:label="Settings Activity">
-        </activity>
     </application>
 
 </manifest>
