@@ -1,9 +1,12 @@
 package com.davidalin.jeopardyscorer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -99,6 +102,17 @@ public class JeopardyScorer extends Activity {
         Button b = (Button) findViewById(test);
         b.setText("Final Jeopardy");
       }
+      
+      boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
+      if (firstrun){
+        // show instructions dialog
+        new AlertDialog.Builder(this).setTitle("Instructions").setMessage(R.string.dialog_instructions).setNeutralButton("OK", null).show();
+        // Save the state
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+            .edit()
+            .putBoolean("firstrun", false)
+            .commit();
+      }
   }
 
     // creates options menu
@@ -107,6 +121,20 @@ public class JeopardyScorer extends Activity {
       getMenuInflater().inflate(R.menu.activity_main, menu);
       return true;
     }
+    
+    //called when an option is clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+      // decide which MenuItem was pressed based on its id
+      switch(item.getItemId()){
+        case R.id.instructions:
+          new AlertDialog.Builder(this).setTitle("Instructions").setMessage(R.string.dialog_instructions).setNeutralButton("OK", null).show();
+      }
+      
+      return true;
+    }
+
+
     
     // prepare to exit application, save our values and button states
     @Override
@@ -134,20 +162,17 @@ public class JeopardyScorer extends Activity {
     
     @Override
     protected void onStart() {
-      super.onStart();
-      //System.out.println("Resuming: " + score);	
+      super.onStart();	
     }
     
     @Override
     protected void onStop() {
       super.onStop();
-      //System.out.println("Stopping: " + score);
     }
     
     @Override
     protected void onDestroy() {
       super.onDestroy();
-      //System.out.println("Destroying: " + score);
     }
     
     public void score(View view) {
@@ -159,11 +184,8 @@ public class JeopardyScorer extends Activity {
       b = (Button) findViewById(view.getId());
       theText = b.getText().toString();
       
-      //System.out.println(b.getText());
-      
       // toggle through button states and adjust score accordingly
       if (theText.contains("+")) {
-        //System.out.println("in+");
         value = Integer.valueOf(b.getText().toString().substring(2));
         b.setText("-$" + value);
         b.setBackgroundResource(R.drawable.r_button);
@@ -171,7 +193,6 @@ public class JeopardyScorer extends Activity {
         correct--;
         wrong++;
       } else if (theText.contains("-")) {
-        //System.out.println("in-");
         value = Integer.valueOf(b.getText().toString().substring(2));
         b.setText("x$" + value.toString());
         b.setTextColor(0x00000000);
@@ -179,13 +200,11 @@ public class JeopardyScorer extends Activity {
         score += value;
         wrong--;
       } else if (theText.startsWith("x")) {
-        //System.out.println("in-");
         value = Integer.valueOf(b.getText().toString().substring(2));
         b.setText("$" + value.toString());
         b.setTextColor(0xFFdaa520);
       } else {
         value = Integer.valueOf(b.getText().toString().substring(1));
-        //System.out.println("in");
         b.setText("+$" + value);
         b.setBackgroundResource(R.drawable.g_button);
         score += value;
@@ -206,8 +225,6 @@ public class JeopardyScorer extends Activity {
       if (b.getText().toString().equals("Double Jeopardy")) {
         for (int i = 0; i < 5; i++) {
           for (int n = 0; n < 6; n++) {
-            //System.out.println("iter: " + (i*6+n));
-            //System.out.println(board[i*6+n].getText());
             board[i*6+n].setText("$" + (i + 1)*400);
             board[i*6+n].setTextColor(0xFFdaa520);
             board[i*6+n].setBackgroundResource(R.drawable.b_button);
@@ -222,16 +239,6 @@ public class JeopardyScorer extends Activity {
     
     // make an array of our buttons. should be a cleaner way to do this
     public void getBoard() {
-      /*
-      // grab our list of ids
-      getIdList();
-      
-      // make a list of actual buttons from the ids
-      for (int i = 0; i < 30; i++) {
-        board[i] = (Button) findViewById(idList[i]);
-      }
-      */
-      
       board[0] = (Button) findViewById(R.id.r1b1);
       board[1] = (Button) findViewById(R.id.r1b2);
       board[2] = (Button) findViewById(R.id.r1b3);
@@ -262,7 +269,6 @@ public class JeopardyScorer extends Activity {
       board[27] = (Button) findViewById(R.id.r5b4);
       board[28] = (Button) findViewById(R.id.r5b5);
       board[29] = (Button) findViewById(R.id.r5b6);
-      
     }
     
     // make an array of our button ids. should be a cleaner way to do this
@@ -323,8 +329,6 @@ public class JeopardyScorer extends Activity {
       dataBundle.putInt("myHighScore", highscore);
       Intent intent = new Intent(this, FinalJeopardyActivity.class);
       intent.putExtras(dataBundle);
-      //System.out.println("1st score: " + score);
-      //System.out.println("string v: " + EXTRA_SCORE);
       startActivity(intent);
     }
  
@@ -342,17 +346,6 @@ public class JeopardyScorer extends Activity {
       } else {
         editText.setText("");
       }
-      /*
-      if (editText.getText().toString().equals("")) {
-        
-      } else {
-        score += Integer.valueOf(editText.getText().toString());
-        TextView t = new TextView(this);
-        t = (TextView) findViewById(R.id.textView1);
-        t.setText(score.toString());
-        editText.setText("");
-      }
-      */
     }
     
     public void dailyDoubleWrong(View view) {
@@ -369,16 +362,5 @@ public class JeopardyScorer extends Activity {
       } else {
         editText.setText("");
       }
-      /*
-      if (editText.getText().toString().equals("")) {
-        
-      } else {
-        score -= Integer.valueOf(editText.getText().toString());
-        TextView t = new TextView(this);
-        t = (TextView) findViewById(R.id.textView1);
-        t.setText(score.toString());
-        editText.setText("");
-      }
-      */
     }              
 }
